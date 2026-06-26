@@ -5,15 +5,15 @@
     <div class="auth-card card">
         <div class="card-body">
             <h1 class="page-title">Регистрация</h1>
-            <form action=" route('register') " method="POST">
+            <form action="<?php echo e(route('register')); ?>" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Имя</label>
-                    <input type="text" name="name" value=" old('name') " class="form-control" required autofocus>
+                    <input type="text" name="name" value="<?php echo e(old('name')); ?>" class="form-control" required autofocus>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value=" old('email') " class="form-control" required>
+                    <input type="email" name="email" value="<?php echo e(old('email')); ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Пароль</label>
@@ -24,7 +24,7 @@
                     <input type="password" name="password_confirmation" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-                <a href=" route('login') " style="margin-left:10px;">Уже есть аккаунт?</a>
+                <a href="<?php echo e(route('login')); ?>" style="margin-left:10px;">Уже есть аккаунт?</a>
             </form>
         </div>
     </div>

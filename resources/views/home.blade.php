@@ -6,12 +6,12 @@
 
     @if ($featured)
         <div class="card" style="margin-bottom:28px;">
-            @if ($featured->image)<img src=" $featured->image " class="card-img" style="height:320px;" alt="">@endif
+            @if ($featured->image)<img src="<?php echo e($featured->image); ?>" class="card-img" style="height:320px;" alt="">@endif
             <div class="card-body">
-                @if ($featured->sport)<span class="badge badge-accent"> $featured->sport->name </span>@endif
-                <h2 style="margin:10px 0;"><a href=" route('articles.show', $featured) "> $featured->title </a></h2>
-                <p> $featured->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($featured->body), 220) </p>
-                <a href=" route('articles.show', $featured) " class="btn btn-primary">Читать полностью</a>
+                @if ($featured->sport)<span class="badge badge-accent"><?php echo e($featured->sport->name); ?></span>@endif
+                <h2 style="margin:10px 0;"><a href="<?php echo e(route('articles.show', $featured)); ?>"><?php echo e($featured->title); ?></a></h2>
+                <p><?php echo e($featured->excerpt); ?></p>
+                <a href="<?php echo e(route('articles.show', $featured)); ?>" class="btn btn-primary">Читать полностью</a>
             </div>
         </div>
     @endif
@@ -31,9 +31,9 @@
                 <tbody>
                 @forelse ($upcomingMatches as $m)
                     <tr>
-                        <td> $m->scheduled_at->format('d.m H:i') </td>
-                        <td> $m->homeTeam->name  —  $m->awayTeam->name </td>
-                        <td><a href=" route('tournaments.show', $m->tournament) "> $m->tournament->name </a></td>
+                        <td><?php echo e($m->scheduled_at->format('d.m H:i')); ?></td>
+                        <td><?php echo e($m->homeTeam->name); ?> — <?php echo e($m->awayTeam->name); ?></td>
+                        <td><a href="<?php echo e(route('tournaments.show', $m->tournament)); ?>"><?php echo e($m->tournament->name); ?></a></td>
                     </tr>
                 @empty
                     <tr><td>Нет запланированных матчей.</td></tr>
@@ -47,8 +47,8 @@
                 <tbody>
                 @forelse ($recentResults as $m)
                     <tr>
-                        <td> $m->scheduled_at->format('d.m') </td>
-                        <td> $m->homeTeam->name  <strong> $m->home_score : $m->away_score </strong>  $m->awayTeam->name </td>
+                        <td><?php echo e($m->scheduled_at->format('d.m')); ?></td>
+                        <td><?php echo e($m->homeTeam->name); ?> <strong><?php echo e($m->home_score); ?>:<?php echo e($m->away_score); ?></strong> <?php echo e($m->awayTeam->name); ?></td>
                     </tr>
                 @empty
                     <tr><td>Нет результатов.</td></tr>
@@ -61,7 +61,7 @@
     <h2 class="section-title">Виды спорта</h2>
     <div class="nav-links">
         @foreach ($sports as $sport)
-            <a href=" route('articles.index', ['sport' => $sport->slug]) " class="badge" style="color:#1e3a8a;"> $sport->icon   $sport->name </a>
+            <a href="<?php echo e(route('articles.index', ['sport' => $sport->slug])); ?>" class="badge" style="color:#1e3a8a;"><?php echo e($sport->icon); ?> <?php echo e($sport->name); ?></a>
         @endforeach
     </div>
 @endsection

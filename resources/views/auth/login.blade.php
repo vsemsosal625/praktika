@@ -5,11 +5,11 @@
     <div class="auth-card card">
         <div class="card-body">
             <h1 class="page-title">Вход</h1>
-            <form action=" route('login') " method="POST">
+            <form action="<?php echo e(route('login')); ?>" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value=" old('email') " class="form-control" required autofocus>
+                    <input type="email" name="email" value="<?php echo e(old('email')); ?>" class="form-control" required autofocus>
                 </div>
                 <div class="form-group">
                     <label>Пароль</label>
@@ -19,7 +19,7 @@
                     <label><input type="checkbox" name="remember"> Запомнить меня</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Войти</button>
-                <a href=" route('register') " style="margin-left:10px;">Создать аккаунт</a>
+                <a href="<?php echo e(route('register')); ?>" style="margin-left:10px;">Создать аккаунт</a>
             </form>
         </div>
     </div>
